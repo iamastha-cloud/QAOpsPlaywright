@@ -1,20 +1,28 @@
 
-import { defineConfig } from '@playwright/test';
-import {
+require('dotenv').config();
+
+const { defineConfig } = require('@playwright/test');
+
+const {
   createAzurePlaywrightConfig,
   ServiceOS
-} from '@azure/playwright';
-import { AzureCliCredential } from '@azure/identity';
-import config from './playwright.config.js';
+} = require('@azure/playwright');
 
-export default defineConfig(
+const { AzureCliCredential } = require('@azure/identity');
+
+const config = require('./playwright.config.js');
+
+module.exports = defineConfig(
   config,
+
   createAzurePlaywrightConfig(config, {
     os: ServiceOS.LINUX,
     connectTimeout: 180000,
     exposeNetwork: '<loopback>',
     credential: new AzureCliCredential(),
+    runName: 'QACloud-GitHub-Actions',
   }),
+
   {
     reporter: [
       ['html', { open: 'never' }],

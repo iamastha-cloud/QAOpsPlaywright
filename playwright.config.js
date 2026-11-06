@@ -1,7 +1,7 @@
 
-import { defineConfig, devices } from '@playwright/test';
+const { defineConfig, devices } = require('@playwright/test');
 
-export default defineConfig({
+module.exports = defineConfig({
 
   testDir: './tests',
 
@@ -11,20 +11,16 @@ export default defineConfig({
 
   reporter: 'html',
 
-  // Parallel execution
   fullyParallel: true,
   workers: 3,
 
-  // Common browser settings
   use: {
-    headless: false,
+    headless: true,
     screenshot: 'on',
     trace: 'on',
   },
 
-  // Three browser projects
   projects: [
-
     {
       name: 'Chrome',
       use: {
@@ -45,7 +41,6 @@ export default defineConfig({
         ...devices['Desktop Safari'],
       },
     },
-
   ],
 
 });

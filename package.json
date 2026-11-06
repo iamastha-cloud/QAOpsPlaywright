@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "Arrays.js",
-  "scripts": {},
+  "scripts": {
+    "test": "playwright test",
+  "test:azure": "playwright test --config=playwright.service.config.js"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -13,5 +16,9 @@
     "@azure/playwright": "^1.1.6",
     "@playwright/test": "^1.64.0",
     "@types/node": "^26.6.5"
+  },
+  "dependencies": {
+    "dotenv": "^18.0.9"
   }
+  
 }
